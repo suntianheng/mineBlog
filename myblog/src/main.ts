@@ -3,13 +3,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: console
-  });
+  const app = await NestFactory.create(AppModule);
 
   //app.use(helmet());
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('mineBlog')
     .setDescription('mineBlog api')
     .setVersion('1.0')

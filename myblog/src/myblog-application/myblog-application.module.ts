@@ -1,19 +1,27 @@
 import { Module } from '@nestjs/common';
-import { UserDto } from 'src/myblog-application-contracts/user/user-dto';
+import { PassportModule } from '@nestjs/passport';
 import { MyBlogApplicationContractsModule } from '../myblog-application-contracts/myblog-application-contracts.module';
 import { MyBlogDomainModule } from '../myblog-domain/myblog-domain.module';
 import { AuthService } from './auth/auth.service';
-import { LocalStrategy } from './auth/local.strategy';
-import { UserService } from './user/user.service';
-
+import { LocalStrategy } from './passport/local.strategy';
+import { UsersService } from './users/users.service';
+import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from './passport/jwt.strategy';
 @Module({
     imports: [
+        PassportModule,
+        JwtModule.register({
+            secret: 'secretKey',
+            signOptions: { expiresIn: '60s' },
+        }),
+
+
+        MyBlogDomainModule,
         MyBlogApplicationContractsModule,
-        MyBlogDomainModule
-        ],
-    providers: [
-        UserService,
     ],
-    exports: []
+    providers: [
+        UsersService, AuthService, LocalStrategy, JwtStrategy
+    ],
+    exports: [AuthService]
 })
 export class MyBlogApplicationModule { }

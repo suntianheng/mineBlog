@@ -4,7 +4,7 @@ import { MyBlogApplicationContractsModule } from '../myblog-application-contract
 import { AuthController } from './auth/auth.controller';
 
 @Module({
-    imports: [MyBlogApplicationContractsModule,MyBlogApplicationModule],
+    imports: [MyBlogApplicationModule],
     controllers: [AuthController],
     providers: []
 })
