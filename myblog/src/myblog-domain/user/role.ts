@@ -9,5 +9,5 @@ export class Role extends FullAuditedEntity {
     RoleName: string;
 
     @Column()
-    RoleType: string;
+    RoleType: number;
 }

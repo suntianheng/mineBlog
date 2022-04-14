@@ -20,6 +20,6 @@ import { JwtStrategy } from './passport/jwt.strategy';
     providers: [
         UserService, AuthService, LocalStrategy, JwtStrategy
     ],
-    exports: [AuthService]
+    exports: [AuthService,UserService]
 })
 export class MyBlogApplicationModule { }

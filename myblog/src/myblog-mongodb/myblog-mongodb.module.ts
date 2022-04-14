@@ -11,14 +11,17 @@ const mongodbEntities = [User];
         TypeOrmModule.forRoot({
             url: "mongodb+srv://myBlog:ZH2ycxjDvlMDh0W7@cluster0.g5lnj.mongodb.net/myBlog?retryWrites=true&w=majority",
             type: "mongodb",
-            //database: "myBlog",
+            database: "myBlog",
             //host: "cluster0.g5lnj.mongodb.net",
-            port: 27017,
+            //port: 27017,
             //username: "myBlog",
             //password: "ZH2ycxjDvlMDh0W7",
-            synchronize: true,
+            synchronize: false,
             entities: mongodbEntities,
-            useUnifiedTopology: true
+            useNewUrlParser: true, 
+            retryWrites:true,
+            w:"majority",
+            useUnifiedTopology: true 
         }),
         TypeOrmModule.forFeature(mongodbEntities),
         MyBlogDomainModule
