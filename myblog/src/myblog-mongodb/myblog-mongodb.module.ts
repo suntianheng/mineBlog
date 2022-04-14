@@ -16,7 +16,7 @@ const mongodbEntities = [User];
             port: 27017,
             //username: "myBlog",
             //password: "ZH2ycxjDvlMDh0W7",
-            synchronize: false,
+            synchronize: true,
             entities: mongodbEntities,
             useUnifiedTopology: true
         }),

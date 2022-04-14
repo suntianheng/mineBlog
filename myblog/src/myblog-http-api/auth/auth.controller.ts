@@ -1,7 +1,7 @@
 import { Controller, Request, Post, UseGuards, Body, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
-import { UserDto } from 'src/myblog-application-contracts/user/user-dto';
+import { UserDto } from 'src/myblog-application/user/user-dto';
 import { AuthService } from 'src/myblog-application/auth/auth.service';
 import { JwtAuthGuard } from 'src/myblog-application/passport/jwt-auth.guard';
 import { LocalAuthGuard } from 'src/myblog-application/passport/local-auth.guard';
