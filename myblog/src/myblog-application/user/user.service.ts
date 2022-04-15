@@ -8,7 +8,7 @@ export class UserService {
     }
 
     async findOne(username: string): Promise<UserDto> {
-        const user = await User.findOne({ where: { UserName: username } });
+        const user = await User.findOne({ UserName: username });
         const userDto = new UserDto();
         userDto.username = user.UserName;
         userDto.password = user.Password;
