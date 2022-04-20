@@ -1,9 +1,15 @@
-import { Entity, ObjectID, ObjectIdColumn, Column } from "typeorm";
+import { Entity, Column } from "typeorm";
 import { FullAuditedAggregateRoot } from "../common/full.audited.aggregate.root.entity";
-import { Role } from "./role";
+import { UserRole } from "./user-role";
 
 @Entity()
 export class User extends FullAuditedAggregateRoot {
+
+    constructor(userName: string, passWord: string) {
+        super();
+        this.UserName = userName;
+        this.Password = passWord;
+    }
 
     @Column()
     UserName: string;
@@ -11,6 +17,12 @@ export class User extends FullAuditedAggregateRoot {
     @Column()
     Password: string;
 
-    @Column((type) => Role)
-    Roles?: Role[]
+    @Column((type) => UserRole)
+    Roles?: UserRole[];
+
+    setRole(roles: UserRole[]) {
+        this.Roles = roles;
+    }
+
+
 }

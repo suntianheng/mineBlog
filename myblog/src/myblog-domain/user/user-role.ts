@@ -1,9 +1,9 @@
 import { Entity, Column } from "typeorm";
-import { FullAuditedEntity } from "../common/full.audited.entity copy";
+import { FullAuditedEntity } from "../common/full.audited.entity";
 
 
 @Entity()
-export class Role extends FullAuditedEntity {
+export class UserRole extends FullAuditedEntity {
  
     @Column()
     RoleName: string;

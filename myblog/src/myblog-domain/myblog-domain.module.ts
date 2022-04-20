@@ -11,8 +11,6 @@ import { User } from './user/user';
             provide: APP_FILTER,
             useClass: AllExceptionsFilter,
         },
-        User
     ],
-    exports: [User]
 })
 export class MyBlogDomainModule { }

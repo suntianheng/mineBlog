@@ -1,4 +1,4 @@
-import { BaseEntity, CreateDateColumn, DeleteDateColumn, ObjectID, ObjectIdColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, ObjectID, ObjectIdColumn, UpdateDateColumn } from "typeorm";
 
 export class FullAuditedEntity extends BaseEntity {
 
@@ -10,8 +10,5 @@ export class FullAuditedEntity extends BaseEntity {
 
     @UpdateDateColumn()
     UpdateDate: Date;
-
-    @DeleteDateColumn()
-    IsDeleted: boolean;
 
 }
