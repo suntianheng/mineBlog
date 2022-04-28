@@ -1,0 +1,51 @@
+@width: 100%;
+@height: 100%;
+
+@transitiontime: 0.3s;
+@num: 0.9;
+
+#index video {
+    height: @width;
+    width: @height;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+
+.blog_index_transition {
+    transition: @transitiontime all;
+    /* Firefox 4 */
+    -moz-transition: @transitiontime all;
+    /* Safari 和 Chrome */
+    -webkit-transition: @transitiontime all;
+    -o-transition: @transitiontime all;
+}
+
+.context {
+    color: #fff;
+    font-size: 3vmax;
+    letter-spacing: 10px;
+    position: relative;
+    top: 15vmax;
+
+    .blog_index_transition();
+
+    a {
+        position: relative;
+        top: 2vmax;
+        letter-spacing: normal;
+        .blog_index_transition();
+    }
+
+    a:hover {
+        transform: scale(@num);
+    }
+}
+
+.context:hover {
+
+    transform: scale(@num);
+
+}

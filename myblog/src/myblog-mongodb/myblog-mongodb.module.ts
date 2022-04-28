@@ -19,7 +19,8 @@ const mongodbEntities = [User];
                 password: process.env.DATABASE_PASSWORD,
                 synchronize: true,
                 entities: mongodbEntities,
-                logging: true
+                logging: true,
+                useUnifiedTopology: true
             }),
         }),
         TypeOrmModule.forFeature(mongodbEntities),

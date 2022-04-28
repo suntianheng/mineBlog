@@ -1,9 +1,7 @@
 import { Controller, Request, Post, UseGuards, Body, Get } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from 'src/myblog-application/user/login-user-dto';
 import { AuthService } from 'src/myblog-application/auth/auth.service';
-import { JwtAuthGuard } from 'src/myblog-application/passport/jwt-auth.guard';
 import { LocalAuthGuard } from 'src/myblog-application/passport/local-auth.guard';
 
 
@@ -11,8 +9,8 @@ import { LocalAuthGuard } from 'src/myblog-application/passport/local-auth.guard
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
-    
+    constructor(private readonly authService: AuthService) { }
+
     @UseGuards(LocalAuthGuard)
     @Post('login')
     @ApiBody({ type: LoginUserDto })

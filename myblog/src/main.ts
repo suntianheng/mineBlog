@@ -1,12 +1,37 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import * as cookieParser from 'cookie-parser';
+import * as session from 'express-session';
+import * as csurf from 'csurf';
 import { AppModule } from './app.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  app.use(helmet());
+  app.set('trust proxy', 1);
+  //启用跨域请求
+  app.enableCors();
+
+
+  app.use(helmet({
+    hsts: {
+      maxAge: 31536000,
+      preload: true
+    }
+  }));
+
+  app.use(cookieParser());
+
+  app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+  }));
+
+  //csrf保护 
+  //app.use(csurf());
 
   const config = new DocumentBuilder()
     .addBearerAuth()

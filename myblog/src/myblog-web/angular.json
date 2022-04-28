@@ -75,6 +75,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "myblog-web:build",
+            "port": 4200,
+            "proxyConfig": "proxy-config.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "myblog-web:build:production"
