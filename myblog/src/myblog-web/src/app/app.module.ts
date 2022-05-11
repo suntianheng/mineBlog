@@ -16,6 +16,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { AuthInterceptor } from './pages/all-common/auth-interceptor/auth-interceptor';
 import { LoginModule } from './pages/all-login/login.module';
 import { SharedModule } from './pages/all-common/shared.module';
+import { BlogHomeModule } from './pages/blog-home/blog-home.module';
 
 
 
@@ -32,11 +33,10 @@ registerLocaleData(en);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    IconsProviderModule,
-
 
     SharedModule,
     BlogIndexModule,
+    BlogHomeModule,
     SystemLayoutModule,
     LoginModule
   ],

@@ -1,10 +1,69 @@
 @width: 100%;
 @height: 100%;
 
-@transitiontime: 0.3s;
-@num: 0.9;
+@transitiontime1: 2s;
+@transitiontime2: 0.5s;
 
-#index video {
+
+.transitionOfOne {
+    transition: @transitiontime1 all;
+    /* Firefox 4 */
+    -moz-transition: @transitiontime1 all;
+    /* Safari 和 Chrome */
+    -webkit-transition: @transitiontime1 all;
+    -o-transition: @transitiontime1 all;
+}
+
+/* 超小设备 (手机, 600px 以下屏幕设备) */
+@media only screen and (max-width: 600px) {
+    #index1 {
+        width: @width;
+        height: @height;
+        background-color: #a7a8bd;
+    }
+
+    #index2 video {
+        display: none;
+    }
+}
+
+/* 小设备 (平板电脑和大型手机，600 像素及以上) */
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    #index1 {
+        width: @width;
+        height: @height;
+        background-color: #a7a8bd;
+    }
+
+    #index2 video {
+        display: none;
+    }
+}
+
+/* 中型设备（平板电脑，768 像素及以上） */
+@media only screen and (min-width: 768px)and (max-width: 992px) {
+    #index1 {
+        width: @width;
+        height: @height;
+        background-color: #a7a8bd;
+    }
+
+    #index2 video {
+        display: none;
+    }
+}
+
+/* 大型设备（笔记本电脑/台式机，992 像素及以上） */
+@media only screen and (min-width: 992px) {}
+
+#index1 {
+    z-index: 2;
+    .transitionOfOne();
+}
+
+
+
+#index2 video {
     height: @width;
     width: @height;
     object-fit: cover;
@@ -13,39 +72,49 @@
     top: 0;
 }
 
-
-.blog_index_transition {
-    transition: @transitiontime all;
-    /* Firefox 4 */
-    -moz-transition: @transitiontime all;
-    /* Safari 和 Chrome */
-    -webkit-transition: @transitiontime all;
-    -o-transition: @transitiontime all;
-}
-
 .context {
-    color: #fff;
-    font-size: 3vmax;
-    letter-spacing: 10px;
+
     position: relative;
     top: 15vmax;
 
-    .blog_index_transition();
+    [nz-col] {
+        color: #fff;
+        font-size: 3vmax;
+        letter-spacing: 0.5vmax;
 
-    a {
-        position: relative;
-        top: 2vmax;
-        letter-spacing: normal;
-        .blog_index_transition();
     }
 
-    a:hover {
-        transform: scale(@num);
+    .meet {
+        background-color: #fff;
+
+        color: black;
+        font-size: 10%;
+        letter-spacing: 4px;
+
+        border: 2px solid #fff;
+        position: relative;
+        top: 4vmax;
+        transform: scale(1.5);
+
+
+        transition: @transitiontime2 all;
+        /* Firefox 4 */
+        -moz-transition: @transitiontime2 all;
+        /* Safari 和 Chrome */
+        -webkit-transition: @transitiontime2 all;
+        -o-transition: @transitiontime2 all;
+    }
+
+    .meet:hover {
+        background-color: rgba(255, 255, 255, 0);
+        color: #fff;
     }
 }
 
-.context:hover {
 
-    transform: scale(@num);
 
+
+
+#live2d-widget {
+    z-index: 999;
 }

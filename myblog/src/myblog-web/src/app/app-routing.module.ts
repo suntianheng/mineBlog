@@ -6,13 +6,17 @@ import { LoginComponent } from
 import { NotFoundComponent } from './pages/all-common/notfound/notfound.component';
 import { BlogIndexComponent } from './pages/blog-index/blog-index.component';
 import { SystemLayoutComponent } from './pages/system-layout/system-layout.component';
+import { BlogHomeComponent } from './pages/blog-home/blog-home.component';
 
 const routes: Routes = [
   {
     path: '', redirectTo: 'index', pathMatch: 'full'
   },
   {
-    path: 'index', component: BlogIndexComponent
+    path: 'index', component: BlogIndexComponent,
+  },
+  {
+    path: 'home', component: BlogHomeComponent,
   },
   {
     path: 'layout', component: SystemLayoutComponent, canActivate: [AuthGuard],

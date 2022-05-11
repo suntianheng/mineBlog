@@ -10,11 +10,19 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './notfound/notfound.component';
 import { CommonModule } from '@angular/common';
+import { IconsProviderModule } from '../../icons-provider.module';
+import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
 
 const nzModule = [
   NzLayoutModule,
@@ -27,14 +35,24 @@ const nzModule = [
   NzDropDownModule,
   NzResultModule,
   NzImageModule,
-  NzGridModule
+  NzGridModule,
+  NzCardModule,
+  NzAvatarModule,
+  NzDividerModule,
+  NzDrawerModule,
+  NzDatePickerModule,
+  NzTimePickerModule
 ];
 
 const ngModule = [
+  /** 导入 ng-zorro-antd-mobile 模块 **/
+  NgZorroAntdMobileModule,
+  
   BrowserAnimationsModule,
   FormsModule,
   HttpClientModule,
   ReactiveFormsModule,
+  IconsProviderModule
 ]
 
 @NgModule({
@@ -42,4 +60,4 @@ const ngModule = [
   declarations: [NotFoundComponent,],
   exports: [NotFoundComponent, CommonModule, ...nzModule, ...ngModule]
 })
-export class SharedModule {}
+export class SharedModule { }

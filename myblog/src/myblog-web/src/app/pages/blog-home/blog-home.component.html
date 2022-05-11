@@ -1,0 +1,43 @@
+<div id="affix1" nz-row nzJustify="center" nzAlign="middle">
+    <div nz-col id="affix2">
+        <button nz-button nzType="default" (click)="open()">
+            <i nz-icon nzType="bars" nzTheme="outline"></i>
+        </button>
+    </div>
+    <nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="top" nzTitle="Basic Drawer"
+        (nzOnClose)="close()">
+        <ng-container *nzDrawerContent>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+        </ng-container>
+    </nz-drawer>
+</div>
+
+<div id="cardrow1">
+    <div id="cardrow2" nz-row nzJustify="center" nzAlign="middle" [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32}">
+        <div nz-col nzXs="24" nzSm="12" nzMd="6" nzLg="4" nzXl="4" *ngFor="let blog of blogs;">
+            <nz-card nzHoverable [nzLoading]="false" [nzCover]="coverTemplate"
+                [nzActions]="[actionArrowRight, actionEdit, actionEllipsis]">
+                <nz-card-meta [nzTitle]="blog.title" [nzDescription]="blog.description" [nzAvatar]="avatarTemplate">
+                </nz-card-meta>
+            </nz-card>
+        </div>
+    </div>
+
+    <ng-template #avatarTemplate>
+        <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+    </ng-template>
+    <ng-template #coverTemplate>
+        <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+    </ng-template>
+    <ng-template #actionArrowRight>
+        <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+    </ng-template>
+    <ng-template #actionEdit>
+        <i nz-icon nzType="edit"></i>
+    </ng-template>
+    <ng-template #actionEllipsis>
+        <i nz-icon nzType="ellipsis"></i>
+    </ng-template>
+</div>
