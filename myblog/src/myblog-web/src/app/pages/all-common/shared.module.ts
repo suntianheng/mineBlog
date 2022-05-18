@@ -24,6 +24,8 @@ import { CommonModule } from '@angular/common';
 import { IconsProviderModule } from '../../icons-provider.module';
 import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 const nzModule = [
   NzLayoutModule,
   NzMenuModule,
@@ -44,10 +46,12 @@ const nzModule = [
   NzTimePickerModule
 ];
 
+const materialModule = [DragDropModule]
+
 const ngModule = [
   /** 导入 ng-zorro-antd-mobile 模块 **/
   NgZorroAntdMobileModule,
-  
+
   BrowserAnimationsModule,
   FormsModule,
   HttpClientModule,
@@ -56,8 +60,8 @@ const ngModule = [
 ]
 
 @NgModule({
-  imports: [CommonModule, ...nzModule, ...ngModule],
+  imports: [CommonModule, ...nzModule, ...materialModule, ...ngModule],
   declarations: [NotFoundComponent,],
-  exports: [NotFoundComponent, CommonModule, ...nzModule, ...ngModule]
+  exports: [NotFoundComponent, CommonModule, ...nzModule, ...materialModule, ...ngModule]
 })
 export class SharedModule { }

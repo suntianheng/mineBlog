@@ -1,9 +1,10 @@
 @width: 100%;
 @height: 100%;
 
-@transitiontime1: 2s;
+@transitiontime1: 0.5s;
+@transitiontime2: 0.2s;
 
-.transitionOfOne {
+.transition1 {
     transition: @transitiontime1 all;
     /* Firefox 4 */
     -moz-transition: @transitiontime1 all;
@@ -12,75 +13,97 @@
     -o-transition: @transitiontime1 all;
 }
 
-#cardrow1 {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-    padding: 20px;
-    display: none;
+.transition2 {
+    transition: @transitiontime2 all;
+    /* Firefox 4 */
+    -moz-transition: @transitiontime2 all;
+    /* Safari 和 Chrome */
+    -webkit-transition: @transitiontime2 all;
+    -o-transition: @transitiontime2 all;
+}
+
+
+
+
+
+#dragboundary {
+    position: fixed;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: @width;
+    height: @height;
     opacity: 0;
-    .transitionOfOne();
-}
+    display: flex;
+    justify-content: center;
+    .transition1();
 
-#cardrow2 div {
-    padding: 10px;
-}
+    #cardrow1 {
+        padding: 20px;
 
-#affix1 {
+        #cardrow2 div {
+            padding: 10px;
+        }
+    }
 
-    top: 0px;
-
-    #affix2 {
+    #drag1 {
         position: fixed;
-        top: -1px;
-        z-index: 999;
-        display: none;
-        opacity: 0;
-        .transitionOfOne();
+        top: 0;
+        background-color: #333;
+        border: #333;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        opacity: 0.5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        [nz-button] {
-            border-radius: 0% 0% 50% 50%;
-            width: 3vmax;
-            height: 2vmax;
+        div {
+            background-color: rgb(110, 110, 110);
+            border: rgb(110, 110, 110);
+            border-radius: 100%;
+            width: 37px;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            div {
+                background-color: rgb(160, 160, 160);
+                border: rgb(160, 160, 160);
+                border-radius: 100%;
+                width: 30px;
+                height: 30px;
+
+                div {
+                    background-color: rgb(255, 255, 255);
+                    border: rgb(255, 255, 255);
+                    border-radius: 100%;
+                    width: 22px;
+                    height: 22px;
+                }
+            }
         }
-
-        [nz-button]:hover {
-            animation: keyframes1 0.2s;
-            -webkit-animation: keyframes1 0.2s;
-
-            /* Safari and Chrome */
-        }
-    }
-}
-
-
-
-@keyframes keyframes1 {
-    0% {
-        border-radius: 0% 0% 50% 50%;
-        width: 3vmax;
-        height: 2vmax;
     }
 
-    100% {
-        width: 6vmax;
-        opacity: 0.2;
-    }
-}
-
-@-webkit-keyframes keyframes1
-
-/* Safari and Chrome */
-    {
-    0% {
-        border-radius: 0% 0% 50% 50%;
-        width: 3vmax;
-        height: 2vmax;
+    #drag1:hover {
+        opacity: 1;
     }
 
-    100% {
-        width: 6vmax;
-        opacity: 0.2;
+    #dashboard {
+        position: fixed;
+        top: 0;
+        background-color: #333;
+        border: #333;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+        opacity: 0.5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

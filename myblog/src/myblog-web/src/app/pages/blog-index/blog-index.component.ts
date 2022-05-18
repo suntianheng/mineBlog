@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class BlogIndexComponent implements OnInit {
 
-  filepath: string = '../../../assets/huahua.mp4';
+  filepath: string = '../../../assets/video1.mp4';
 
 
   seasons = [
@@ -61,7 +61,7 @@ export class BlogIndexComponent implements OnInit {
     this.renderer2.setStyle(index, 'opacity', '0');
     setTimeout(() => {
       this.router.navigateByUrl('home');
-    }, 2000);
+    }, 500);
   }
 
 

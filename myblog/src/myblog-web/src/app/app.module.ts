@@ -5,10 +5,8 @@ import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { IconsProviderModule } from './icons-provider.module';
 import { SystemLayoutModule } from './pages/system-layout/system-layout.module';
 import { BlogIndexModule } from './pages/blog-index/blog-index.module';
-import { NotFoundComponent } from './pages/all-common/notfound/notfound.component';
 
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';

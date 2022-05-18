@@ -3,38 +3,34 @@
 
 
 
-<div id="index1">
+<div id="index1" nz-row nzAlign="middle" nzJustify="center">
 
     <div id="index2">
-        <!-- <video loop oncanplay="this.play()" onloadedmetadata="this.muted = true">
+        <video loop oncanplay="this.play()" onloadedmetadata="this.muted = true">
             <source [src]="filepath" type="video/mp4">
-        </video> -->
+        </video>
     </div>
-
-
-    <div nz-row nzAlign="middle" nzJustify="center">
-        <div nz-col>
-            <div class="context" nz-row nzAlign="middle" nzJustify="center">
-                <div nz-col>You have a dream,</div>
-            </div>
-            <div class="context" nz-row nzAlign="middle" nzJustify="center">
-                <div nz-col>You got to protect it.</div>
-            </div>
-            <div class="context" nz-row nzAlign="middle" nzJustify="center">
-                <button nz-button class="meet" [nzShape]="'round'" [nzSize]="'large'" nzType="default"
-                    (click)="meetFunc()">遇见></button>
+    <div nz-col>
+        <div class="context" nz-row nzAlign="middle" nzJustify="center">
+            <div nz-col class="context1">You have a dream,</div>
+        </div>
+        <div class="context" nz-row nzAlign="middle" nzJustify="center">
+            <div nz-col class="context1">You got to protect it.</div>
+        </div>
+        <div class="context" nz-row nzAlign="middle" nzJustify="center">
+            <div nz-col>
+                <button nz-button id="meet" [nzShape]="'round'" [nzSize]="'large'" nzType="default"
+                    (click)="meetFunc()">
+                    <span id="meetspan1">遇见
+                        <span id="meetspan2">
+                            <span id="meetspan3">></span>
+                            <span id="meetspan4">></span>
+                            <span id="meetspan5">></span>
+                        </span>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
 
 </div>
-
-
-
-<PickerView [data]="seasons" [cascade]="false" [(ngModel)]="value" (ngModelChange)="onChange($event)"></PickerView>
-
-
-
-
-
-
