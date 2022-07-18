@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ElementRef, Renderer2, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, EventEmitter, Output, AfterViewInit } from '@angular/core';
 import { L2Dwidget } from 'live2d-widget';
 @Component({
   selector: 'app-blog-home',
   templateUrl: './blog-home.component.html',
   styleUrls: ['./blog-home.component.less']
 })
-export class BlogHomeComponent implements OnInit {
+export class BlogHomeComponent implements OnInit, AfterViewInit {
 
 
   blogs: Array<any> = [];
@@ -17,9 +17,7 @@ export class BlogHomeComponent implements OnInit {
   divl!: any;
   dashboard!: any;
 
-  mousedownTime!: any;
-  mouseupTime!: any;
-
+  dragStarted: boolean = false;
   show: boolean = false;
 
   constructor(
@@ -28,10 +26,8 @@ export class BlogHomeComponent implements OnInit {
     private elementRef: ElementRef,
   ) { }
 
-  ngOnInit(): void {
 
-    this.drag1 = this.elementRef.nativeElement.querySelector('#drag1');
-    this.divl = this.elementRef.nativeElement.querySelector('#drag1 div');
+  ngOnInit(): void {
     this.l2DInit();
     for (let index = 0; index < 100; index++) {
       this.blogs.push({
@@ -44,6 +40,10 @@ export class BlogHomeComponent implements OnInit {
     this.meetinit();
   }
 
+  ngAfterViewInit(): void {
+    this.drag1 = this.elementRef.nativeElement.querySelector('#drag1');
+    this.renderer2.setStyle(this.drag1, 'opacity', '0.5');
+  }
 
   l2DInit() {
     L2Dwidget.init({
@@ -109,34 +109,21 @@ export class BlogHomeComponent implements OnInit {
 
 
   buttonBlur() {
-
     this.renderer2.setStyle(this.dashboard, 'top', '0');
     this.renderer2.setStyle(this.dashboard, 'border-radius', '100%');
     this.renderer2.setStyle(this.dashboard, 'width', '50px');
     this.renderer2.setStyle(this.dashboard, 'height', '50px');
 
+    this.time2 = setTimeout(() => {
+      this.show = false;
+    }, 200);
+
     this.time1 = setTimeout(() => {
+      this.drag1 = this.elementRef.nativeElement.querySelector('#drag1');
+      this.addTransition(this.drag1);
       this.renderer2.setStyle(this.drag1, 'opacity', '0.5');
     }, 3000);
 
-    this.time2 = setTimeout(() => {
-      this.renderer2.setStyle(this.drag1, 'display', 'block');
-      this.renderer2.setStyle(this.drag1, 'display', 'flex');
-      this.renderer2.setStyle(this.drag1, 'align-items', 'center');
-      this.renderer2.setStyle(this.drag1, 'justify-content', 'center');
-
-
-      this.renderer2.setStyle(this.divl, 'display', 'block');
-      // this.renderer2.setStyle(this.divl, 'background-color', 'rgb(110, 110, 110)');
-      // this.renderer2.setStyle(this.divl, 'border', 'rgb(110, 110, 110)');
-      // this.renderer2.setStyle(this.divl, 'border-radius', '100%');
-      // this.renderer2.setStyle(this.divl, 'width', '37px');
-      // this.renderer2.setStyle(this.divl, 'height', '37px');
-      this.renderer2.setStyle(this.divl, 'display', 'flex');
-      this.renderer2.setStyle(this.divl, 'align-items', 'center');
-      this.renderer2.setStyle(this.divl, 'justify-content', 'center');
-      this.show = false;
-    }, 200);
   }
 
   // dragPosition = {x: -10, y: 0};
@@ -146,10 +133,11 @@ export class BlogHomeComponent implements OnInit {
   // }
 
   mousedownFunc() {
+    this.dragStarted = false;
+    this.drag1 = this.elementRef.nativeElement.querySelector('#drag1');
+    this.divl = this.elementRef.nativeElement.querySelector('#drag1 div');
     clearTimeout(this.time1);
 
-    this.mousedownTime = new Date().getTime();
-    console.log("mousedownFunc", this.mousedownTime)
 
     this.addTransition(this.divl);
     this.addTransition(this.drag1);
@@ -158,10 +146,7 @@ export class BlogHomeComponent implements OnInit {
   }
 
   mouseupFunc() {
-    this.mouseupTime = new Date().getTime();
-    console.log("mouseupFunc", this.mouseupTime)
-
-    if (this.mouseupTime - this.mousedownTime <= 100) {
+    if (!this.dragStarted) {
       this.onClick();
     } else {
       this.time1 = setTimeout(() => {
@@ -171,20 +156,20 @@ export class BlogHomeComponent implements OnInit {
 
   }
 
+  ontouchStart() {
+    this.mousedownFunc();
+  }
+
+  ontouchEnd() {
+    this.mouseupFunc();
+  }
 
 
   onClick() {
-    console.log("onClick")
-
-    this.renderer2.setStyle(this.divl, 'display', 'none');
-    this.renderer2.setStyle(this.drag1, 'display', 'none');
-
     this.show = true;
     clearTimeout(this.time2);
     setTimeout(() => {
       this.dashboard = this.elementRef.nativeElement.querySelector('#dashboard');
-      //TODO  跟随拖动位置进行计算展示dashboard
-      console.log(this.dashboard);
       this.addTransition(this.dashboard);
       this.renderer2.setStyle(this.dashboard, 'top', '30px');
       this.renderer2.setStyle(this.dashboard, 'border-radius', '10%');
@@ -197,6 +182,7 @@ export class BlogHomeComponent implements OnInit {
   }
 
   cdkDragStartedFunc() {
+    this.dragStarted = true;
     this.removeTransition(this.divl);
     this.removeTransition(this.drag1);
   }

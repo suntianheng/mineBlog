@@ -30,17 +30,19 @@
 
     <!-- [cdkDragFreeDragPosition]="dragPosition" -->
 
-    <button id="drag1" cdkDragBoundary="#dragboundary" cdkDrag (mousedown)="mousedownFunc()" (mouseup)="mouseupFunc()"
-        (cdkDragStarted)="cdkDragStartedFunc()" (cdkDragEnded)="cdkDragEndedFunc()">
+    <button  *ngIf="!show" id="drag1" cdkDragBoundary="#dragboundary" cdkDrag (mousedown)="mousedownFunc()" (mouseup)="mouseupFunc()"
+        (ontouchstart)="ontouchStart()" (ontouchend)="ontouchEnd()" (cdkDragStarted)="cdkDragStartedFunc()"
+        (cdkDragEnded)="cdkDragEndedFunc()">
         <div>
             <div>
                 <div>
+
                 </div>
             </div>
         </div>
     </button>
 
-    <button *ngIf="show" id="dashboard" (blur)="buttonBlur()" >
+    <button *ngIf="show" id="dashboard" (blur)="buttonBlur()" cdkDragBoundary="#dragboundary" cdkDrag>
     </button>
 
 </div>
